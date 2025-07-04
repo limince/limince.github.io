@@ -54,7 +54,7 @@ nav a:hover,nav a.active{color:var(--primary);border-color:var(--primary);}
 .sidebar a{color:var(--primary); font-size:14px; text-decoration:none;}
 .sidebar a:hover{text-decoration:underline;}
 
-/* ---------- 主体 ---------- */
+/* ---------- 主体标题 ---------- */
 section{margin-bottom:60px;}
 section h3{
   display:flex; align-items:center; gap:6px;
@@ -64,8 +64,11 @@ section h3::before{
   content:""; width:8px; height:8px; border-radius:50%;
   background:var(--primary);
 }
+/* 小标题 */
+section h4{font-size:18px; margin:6px 0 12px;}
+section h5{font-size:16px; margin:4px 0 10px; color:var(--text-light);}
 
-/* 列表 */
+/* ---------- 列表 ---------- */
 ul.dotlist{padding-left:18px; margin:0;}
 ul.dotlist li{margin:6px 0;}
 .news li{margin:6px 0;} .news time{font-weight:600; margin-right:6px;}
@@ -76,18 +79,18 @@ ul.dotlist li{margin:6px 0;}
   color:#6b7a8a; font-size:15px; line-height:1.55;
 }
 
-/* 期刊：J 正序 */
-.j-pub{counter-reset:jpub 0;}
-.j-pub li{counter-increment:jpub; margin:10px 0 18px;}
-.j-pub li::before{
+/* 期刊计数器 */
+.j-block{counter-reset:jpub 0;}
+.j-block li{counter-increment:jpub; margin:10px 0 18px;}
+.j-block li::before{
   content:"J" counter(jpub) ". ";
   font-weight:600; color:#3a4754;
 }
 
-/* 会议：C 正序 */
-.c-pub{counter-reset:cpub 0;}
-.c-pub li{counter-increment:cpub; margin:10px 0 18px;}
-.c-pub li::before{
+/* 会议计数器 */
+.c-block{counter-reset:cpub 0;}
+.c-block li{counter-increment:cpub; margin:10px 0 18px;}
+.c-block li::before{
   content:"C" counter(cpub) ". ";
   font-weight:600; color:#3a4754;
 }
@@ -177,36 +180,165 @@ document.addEventListener('DOMContentLoaded',()=>{
     <section id="pub">
       <h3>Publications</h3>
 
-      <!-- Journal Papers -->
-      <h4>Journal Papers</h4>
-      <ol class="pub-base j-pub">
-        <li>
-          Li M（李民策）, Yang D, Tian J, Fan Y, Pan T. An adaptive fuzzy energy management strategy for fuel cell hybrid vehicles considering soft classification for driving pattern[J]. International Journal of Hydrogen Energy, 2025, 138: 273-285.
-        </li>
+      <!-- ───────── Journal ───────── -->
+      <div class="j-block">
+        <h4>Journal Papers</h4>
 
-        <li>
-          Pengzhou Cheng, <strong>Mince Li</strong>, Aston Zhang, Zhuosheng Zhang, Gongshen Liu,
-          <em>OS-Kairos: Adaptive Interaction for LLM-Powered GUI Agents</em>,
-          Preprint, arXiv:xxxx.xxxxx, 2024.
-          <a href="https://arxiv.org/abs/xxxx.xxxxx">(PDF)</a>
-        </li>
+        <h5>First / Corresponding Author</h5>
+        <ul class="pub-base">
+           <!-- ① Hydrogen Energy 论文 -->
+          <li>
+            Li M., Yang D., Tian J., Fan Y., Pan T.,
+            <em>An adaptive fuzzy energy management strategy for fuel cell hybrid vehicles considering soft classification for driving pattern</em>,
+            International Journal of Hydrogen Energy, 2025, 138: 273-285.
+          </li>
 
-        <li>
-          Mince Li, et al.,
-          <em>An Energy-Optimal Strategy for Fuel-Cell/Battery Hybrid Systems</em>,
-          International Journal of Hydrogen Energy, 2023.
-        </li>
-      </ol>
+          <!-- ① GEITS 论文 -->
+          <li>
+            Li M, Wang Y, Peng P, Chen Z.,
+            <em>Toward efficient smart management: A review of modeling and optimization approaches in electric vehicle-transportation network-grid integration</em>,
+            Green Energy and Intelligent Transportation, 2024, 3(6): 100181.
+          </li>
 
-      <!-- Conference Papers -->
-      <h4>Conference Papers</h4>
-      <ol class="pub-base c-pub">
-        <li>
-          Mince Li, et al.,
-          <em>Grounding and Reasoning for LLM-Powered GUI Agents with Query-Oriented Pivot Tasks</em>,
-          ACL 2024.
-        </li>
-      </ol>
+          <!-- ① ECM 论文 -->
+          <li>
+            Li M., Wang Y., Yu P., Sun Z., Chen Z.,
+            <em>Online adaptive energy management strategy for fuel cell hybrid vehicles based on improved cluster and regression learner</em>,
+            Energy Conversion and Management, 2023, 292: 117388.
+          </li>
+          
+          <!-- ① T-TE 论文 -->
+          <li>
+            Li M., Yu P., Wang Y., Sun Z., Chen Z.,
+            <em>Topology comparison and sensitivity analysis of fuel cell hybrid systems for electric vehicles</em>,
+            IEEE Transactions on Transportation Electrification, 2023, 9(4): 5111-5121.
+          </li>
+          
+          <!-- ② JESTPE 论文 -->
+          <li>
+            Li M., Wang L., Wang Y., Chen X., Chen Z.,
+            <em>A framework for states co-estimation of hybrid energy storage systems based on fractional-order theory</em>,
+            IEEE Journal of Emerging and Selected Topics in Power Electronics, 2023, 11(1): 224-233.
+          </li>
+          
+          <!-- ③ T-PEL 论文 -->
+          <li>
+            Li M., Wang L., Wang Y., Chen Z.,
+            <em>Sizing optimization and energy management strategy for hybrid energy storage system using multi-objective optimization and random forests</em>,
+            IEEE Transactions on Power Electronics, 2021, 36(10): 11421-11430.
+          </li>
+        </ul>
+
+        <h5>Co-authored Papers</h5>
+        <ul class="pub-base">
+
+          <!-- ① T-TE, 2025 -->
+          <li>
+            Fan Y., Chi Q., Fang X., Tian J., <strong>Li M.</strong>, Liu X.,
+            <em>State-of-charge estimation of lithium-ion batteries using an adaptive particle filter based on an improved particle swarm optimization algorithm</em>,
+            IEEE Transactions on Transportation Electrification, 2025, **(early access): ***-***.
+          </li>
+          
+          <!-- ② T-IE, 2025 -->
+          <li>
+            Zhang Z., Fan Y., Tian J., Kuang H., <strong>Li M.</strong>, Pan T., Wang Y., Liu X.,
+            <em>Online estimation of model parameters and state of charge for lithium-ion battery using multiscale recurrent neural networks</em>,
+            IEEE Transactions on Industrial Electronics, 2025, 72(8): 8119-8129.
+          </li>
+          
+          <!-- ③ ECM, 2024 -->
+          <li>
+            Liu Y., Sun Z., Wang Y., <strong>Li M.</strong>, Chen Z.,
+            <em>Capacity configuration of fuel cell hybrid vehicles using enhanced multi-objective particle swarm optimization with competitive mechanism</em>,
+            Energy Conversion and Management, 2024, 321: 119039.
+          </li>
+          
+          <!-- ④ Measurement, 2024 -->
+          <li>
+            Fan Y., Zhang Z., Yang G., Pan T., Tian J., <strong>Li M.</strong>, Liu X., Wang P.,
+            <em>A comparative study of modeling and parameter identification for lithium-ion batteries in energy storage systems</em>,
+            Measurement, 2024, 243: 116263.
+          </li>
+          
+          <li>
+            Liu Y., <strong>Li M.</strong>, Wang Y., Sun Z., Chen Z.,
+            <em>Predictive energy management for fuel cell hybrid vehicles considering efficiency and safety</em>,
+            IEEE Transactions on Power Electronics, 2024, 39(10): 13842-13852.
+          </li>
+          
+          <li>
+            Shi Y., Sun Z., Wang Y., <strong>Li M.</strong>, Chen Z.,
+            <em>Thermal management of proton-exchange membrane fuel cells with enhanced fuzzy control via an improved whale optimization algorithm</em>,
+            Energy Technology, 2024, 12(6): 2400955.
+          </li>
+          
+          <li>
+            Chen X., <strong>Li M.</strong>, Chen Z.,
+            <em>Meta rule-based energy management strategy for battery/supercapacitor hybrid electric vehicles</em>,
+            Energy, 2023, 285: 129365.
+          </li>
+          
+          <li>
+            Yu P., <strong>Li M.</strong>, Wang Y., Chen Z.,
+            <em>Fuel cell hybrid electric vehicles: A review of topologies and energy management strategies</em>,
+            World Electric Vehicle Journal, 2022, 13(9): 172.
+          </li>
+          <li>
+            Wang Y., Zhao G., Zhou C., <strong>Li M.</strong>, Chen Z.,
+            <em>Lithium-ion battery optimal charging using moth-flame optimization algorithm and fractional-order model</em>,
+            IEEE Transactions on Transportation Electrification, 2022, 9(4): 4981-4989.
+          </li>
+          
+          <li>
+            Wang L., <strong>Li M.</strong>, Chen Z.,
+            <em>An energy management strategy for hybrid energy storage systems coordinate with state of thermal and power</em>,
+            Control Engineering Practice, 2022, 122: 105122.
+          </li>
+          
+          <li>
+            Wang L., <strong>Li M.</strong>, Wang Y., Chen Z.,
+            <em>Energy management strategy and optimal sizing for hybrid energy storage systems using an evolutionary algorithm</em>,
+            IEEE Transactions on Intelligent Transportation Systems, 2021, 23(9): 14283-14293.
+          </li>
+          
+          <li>
+            Wang Y., <strong>Li M.</strong>, Chen Z.,
+            <em>Experimental study of fractional-order models for lithium-ion battery and ultra-capacitor: Modeling, system identification, and validation</em>,
+            Applied Energy, 2020, 278: 115736.
+          </li>
+          
+          <li>
+            Wang Y., Tian J., Sun Z., Wang L., Xu R., <strong>Li M.</strong>, Chen Z.,
+            <em>A comprehensive review of battery modeling and state estimation approaches for advanced battery management systems</em>,
+            Renewable and Sustainable Energy Reviews, 2020, 131: 110015.
+          </li>
+          
+          <li>
+            Wang Y., Wang L., <strong>Li M.</strong>, Chen Z.,
+            <em>A review of key issues for control and management in battery and ultra-capacitor hybrid energy storage systems</em>,
+            eTransportation, 2020, 4: 100064.
+          </li>
+        </ul>
+      </div>
+
+      <!-- ───────── Conference ───────── -->
+      <div class="c-block">
+        <h4>Conference Papers</h4>
+
+        <h5>First / Corresponding Author</h5>
+        <ul class="pub-base">
+          <li>
+            Mince Li, et al.,
+            <em>Grounding and Reasoning for LLM-Powered GUI Agents with Query-Oriented Pivot Tasks</em>,
+            ACL 2024.
+          </li>
+        </ul>
+
+        <h5>Co-authored Papers</h5>
+        <ul class="pub-base">
+          <!-- 示例空条目，可按需添加 -->
+        </ul>
+      </div>
     </section>
 
     <!-- Honors -->
