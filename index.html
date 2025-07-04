@@ -4,27 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mince Li | Personal Homepage</title>
+
 <style>
-/* ----- 全局样式 ----- */
+/* ---------- 全局 ---------- */
 :root{
-  --bg:          #fdfdfd;
-  --primary:     #0058b0;
-  --primary-lt:  #ebf3ff;
-  --text:        #222;
-  --text-light:  #555;
-  --border:      #e0e0e0;
+  --bg:#fdfdfd; --primary:#0058b0; --primary-lt:#ebf3ff;
+  --text:#222;   --text-light:#555; --border:#e0e0e0;
 }
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
   margin:0;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  color:var(--text);
-  background:var(--bg);
-  line-height:1.65;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  color:var(--text); background:var(--bg); line-height:1.65;
 }
 
-/* ----- 顶部导航 ----- */
+/* ---------- 顶部导航 ---------- */
 nav{
   position:fixed; top:0; left:0; right:0; z-index:100;
   background:#fff; border-bottom:1px solid var(--border);
@@ -35,21 +30,18 @@ nav a{
   color:var(--text-light); text-decoration:none; font-size:15px;
   border-bottom:3px solid transparent;
 }
-nav a:hover, nav a.active{ color:var(--primary); border-color:var(--primary); }
+nav a:hover,nav a.active{color:var(--primary);border-color:var(--primary);}
 
-/* ----- 布局：侧栏 + 主体 ----- */
+/* ---------- 布局 ---------- */
 .wrapper{
-  max-width:1100px; margin:80px auto 40px;   /* 80px = 导航高度预留 */
-  display:grid;
-  grid-template-columns:260px 1fr;
-  gap:40px;
+  max-width:1100px; margin:80px auto 40px;
+  display:grid; grid-template-columns:260px 1fr; gap:40px;
 }
 
-/* ----- 侧栏 ----- */
+/* ---------- 侧栏 ---------- */
 .sidebar{
   background:#fff; border:1px solid var(--border); border-radius:6px;
-  padding:24px; text-align:center;
-  position:sticky; top:100px;            /* 跟随滚动 */
+  padding:24px; text-align:center; position:sticky; top:100px;
 }
 .sidebar img{
   width:140px; height:140px; border-radius:50%; object-fit:cover;
@@ -59,49 +51,52 @@ nav a:hover, nav a.active{ color:var(--primary); border-color:var(--primary); }
 .sidebar p{margin:4px 0; font-size:14px; color:var(--text-light);}
 .sidebar ul{list-style:none; padding:0; margin:18px 0 0;}
 .sidebar li{margin:6px 0;}
-.sidebar a{color:var(--primary); text-decoration:none; font-size:14px;}
+.sidebar a{color:var(--primary); font-size:14px; text-decoration:none;}
 .sidebar a:hover{text-decoration:underline;}
 
-/* ----- 主体内容 ----- */
+/* ---------- 主体 ---------- */
 section{margin-bottom:60px;}
 section h3{
   display:flex; align-items:center; gap:6px;
   font-size:22px; margin:0 0 18px;
 }
 section h3::before{
-  content:""; display:inline-block;
-  width:8px; height:8px; border-radius:50%;
-  background:var(--primary); margin-right:4px;
+  content:""; width:8px; height:8px; border-radius:50%;
+  background:var(--primary);
 }
 
-/* About 列表 */
+/* 列表 */
 ul.dotlist{padding-left:18px; margin:0;}
 ul.dotlist li{margin:6px 0;}
+.news li{margin:6px 0;} .news time{font-weight:600; margin-right:6px;}
 
-/* News 时间线 */
-.news li{margin:6px 0;}
-.news time{font-weight:600; margin-right:6px;}
-
-/* Publications —— 列表式展示（新） */
-.pub-list{
-  counter-reset: pub 0;               /* 0 = J1；若想从 J97 开始，改为 96 */
+/* ---------- Publications 样式 ---------- */
+.pub-base{
   list-style:none; padding-left:0;
-  color:#6b7a8a;                      /* 浅灰色文字 */
-  font-size:15px; line-height:1.55;
+  color:#6b7a8a; font-size:15px; line-height:1.55;
 }
-.pub-list li{
-  counter-increment: pub;
-  margin:10px 0 18px;
-}
-.pub-list li::before{
-  content:"J" counter(pub) ". ";
-  font-weight:600;
-  color:#3a4754;
-}
-.pub-list a{color:#0058b0; text-decoration:none;}
-.pub-list a:hover{text-decoration:underline;}
 
-/* 响应式：小屏侧栏折叠 */
+/* 期刊：J 正序 */
+.j-pub{counter-reset:jpub 0;}
+.j-pub li{counter-increment:jpub; margin:10px 0 18px;}
+.j-pub li::before{
+  content:"J" counter(jpub) ". ";
+  font-weight:600; color:#3a4754;
+}
+
+/* 会议：C 正序 */
+.c-pub{counter-reset:cpub 0;}
+.c-pub li{counter-increment:cpub; margin:10px 0 18px;}
+.c-pub li::before{
+  content:"C" counter(cpub) ". ";
+  font-weight:600; color:#3a4754;
+}
+
+/* 链接配色 */
+.pub-base a{color:#0058b0; text-decoration:none;}
+.pub-base a:hover{text-decoration:underline;}
+
+/* ---------- 响应式 ---------- */
 @media(max-width:900px){
   .wrapper{grid-template-columns:1fr;}
   .sidebar{position:static; order:-1; margin-bottom:32px;}
@@ -109,25 +104,24 @@ ul.dotlist li{margin:6px 0;}
 </style>
 
 <script>
-/* ——— Active Link 高亮 ——— */
+/* ---------- 滚动高亮导航 ---------- */
 document.addEventListener('DOMContentLoaded',()=>{
   const navLinks=[...document.querySelectorAll('nav a')];
   const sections=navLinks.map(a=>document.querySelector(a.getAttribute('href')));
   const activate=()=>{
     const pos=window.scrollY+110;
     let idx=0;
-    sections.forEach((sec,i)=>{ if(sec.offsetTop<=pos) idx=i; });
+    sections.forEach((sec,i)=>{if(sec.offsetTop<=pos) idx=i;});
     navLinks.forEach(a=>a.classList.remove('active'));
     navLinks[idx].classList.add('active');
   };
-  activate();
-  window.addEventListener('scroll',activate);
+  activate(); window.addEventListener('scroll',activate);
 });
 </script>
 </head>
 
 <body>
-<!--========== 顶部导航 ==========-->
+<!-- ---------- 顶部导航 ---------- -->
 <nav>
   <a href="#home">Homepage</a>
   <a href="#about">About Me</a>
@@ -139,7 +133,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 </nav>
 
 <div class="wrapper">
-  <!--========== 侧栏 ==========-->
+  <!-- ---------- 侧栏 ---------- -->
   <aside class="sidebar">
     <img src="your_photo.jpg" alt="Profile Photo">
     <h2>Mince Li</h2>
@@ -154,17 +148,16 @@ document.addEventListener('DOMContentLoaded',()=>{
     </ul>
   </aside>
 
-  <!--========== 主体内容 ==========-->
+  <!-- ---------- 主体 ---------- -->
   <main>
-    <!-- Home 占位锚点 -->
     <section id="home"></section>
 
-    <!-- About Me -->
+    <!-- About -->
     <section id="about">
       <h3>About Me</h3>
       <ul class="dotlist">
         <li>I am a lecture at <strong>School of Electrical Engineering and Automation, Anhui University</strong>.</li>
-        <li>I received my Ph.D in Control Engineering and Science from <strong>University of Science and Technology of China</strong> in 2024, advised by <strong>Prof. Zonghai Chen.</strong></li>
+        <li>I received my Ph.D in Control Engineering and Science from <strong>University of Science and Technology of China</strong> in 2024, advised by <strong>Prof. Zonghai Chen</strong>.</li>
         <li>I received my B.S. in Electrical Engineering and its Automation from Beijing Jiaotong University in 2019.</li>
         <li>My research interests lie in <em>Energy Management Strategy for Fuel Cell Hybrid Systems</em>, <em>Battery Management System</em>, <em>Prognostics and Health Management for Fuel Cells</em>.</li>
         <li><strong>Call for Collaboration:</strong> I’m always open to working with fellow researchers and students—feel free to email me!</li>
@@ -184,11 +177,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     <section id="pub">
       <h3>Publications</h3>
 
-      <ol class="pub-list">
+      <!-- Journal Papers -->
+      <h4>Journal Papers</h4>
+      <ol class="pub-base j-pub">
         <li>
-          Yi Ji, Yongyuan Zhu, Siliang Lu, Lixia Yang, Alan Wee-Chung Liew,
-          <em>WTC-iPST: A deep learning framework for short-term electric load forecasting with multi-scale feature extraction</em>,
-          Knowledge-Based Systems, 2025, Vol. 324, pp. 113907.
+          Li M（李民策）, Yang D, Tian J, Fan Y, Pan T. An adaptive fuzzy energy management strategy for fuel cell hybrid vehicles considering soft classification for driving pattern[J]. International Journal of Hydrogen Energy, 2025, 138: 273-285.
         </li>
 
         <li>
@@ -198,6 +191,16 @@ document.addEventListener('DOMContentLoaded',()=>{
           <a href="https://arxiv.org/abs/xxxx.xxxxx">(PDF)</a>
         </li>
 
+        <li>
+          Mince Li, et al.,
+          <em>An Energy-Optimal Strategy for Fuel-Cell/Battery Hybrid Systems</em>,
+          International Journal of Hydrogen Energy, 2023.
+        </li>
+      </ol>
+
+      <!-- Conference Papers -->
+      <h4>Conference Papers</h4>
+      <ol class="pub-base c-pub">
         <li>
           Mince Li, et al.,
           <em>Grounding and Reasoning for LLM-Powered GUI Agents with Query-Oriented Pivot Tasks</em>,
@@ -232,7 +235,6 @@ document.addEventListener('DOMContentLoaded',()=>{
         <li>PC Member, Workshop on Trustworthy LLM Systems 2024.</li>
       </ul>
     </section>
-
   </main>
 </div>
 </body>
