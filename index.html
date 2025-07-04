@@ -1,19 +1,246 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>你的名字 | 个人主页</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-    .container { max-width: 800px; margin: 0 auto; }
-    h1 { color: #333; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name | Personal Homepage</title>
+<style>
+/* ----- 全局样式 ----- */
+:root{
+  --bg:          #fdfdfd;
+  --primary:     #0058b0;
+  --primary-lt:  #ebf3ff;
+  --text:        #222;
+  --text-light:  #555;
+  --border:      #e0e0e0;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.65;
+}
+
+/* ----- 顶部导航 ----- */
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background:#fff; border-bottom:1px solid var(--border);
+  display:flex; gap:40px; padding:0 32px;
+}
+nav a{
+  display:block; padding:14px 0;
+  color:var(--text-light); text-decoration:none; font-size:15px;
+  border-bottom:3px solid transparent;
+}
+nav a:hover, nav a.active{ color:var(--primary); border-color:var(--primary); }
+
+/* ----- 布局：侧栏 + 主体 ----- */
+.wrapper{
+  max-width:1100px; margin:80px auto 40px;   /* 80px = 导航高度预留 */
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:40px;
+}
+
+/* ----- 侧栏 ----- */
+.sidebar{
+  background:#fff; border:1px solid var(--border); border-radius:6px;
+  padding:24px; text-align:center;
+  position:sticky; top:100px; /* 跟随滚动 */
+}
+.sidebar img{
+  width:140px; height:140px; border-radius:50%; object-fit:cover;
+  border:3px solid var(--primary-lt);
+}
+.sidebar h2{margin:16px 0 4px; font-size:22px;}
+.sidebar p{margin:4px 0; font-size:14px; color:var(--text-light);}
+.sidebar ul{list-style:none; padding:0; margin:18px 0 0;}
+.sidebar li{margin:6px 0;}
+.sidebar a{color:var(--primary); text-decoration:none; font-size:14px;}
+.sidebar a:hover{text-decoration:underline;}
+
+/* ----- 主体内容 ----- */
+section{margin-bottom:60px;}
+section h3{
+  display:flex; align-items:center; gap:6px;
+  font-size:22px; margin:0 0 18px;
+}
+section h3::before{
+  content:""; display:inline-block;
+  width:8px; height:8px; border-radius:50%;
+  background:var(--primary); margin-right:4px;
+}
+
+/* About 列表 */
+ul.dotlist{padding-left:18px; margin:0;}
+ul.dotlist li{margin:6px 0;}
+
+/* News 时间线 */
+.news li{margin:6px 0;}
+.news time{font-weight:600; margin-right:6px;}
+
+/* Publications 卡片 */
+.pub-item{
+  display:flex; gap:20px; margin:28px 0;
+  border-bottom:1px dashed var(--border); padding-bottom:24px;
+}
+.pub-item:last-child{border:none;}
+.pub-item img{
+  width:220px; height:140px; object-fit:cover; border:1px solid var(--border);
+}
+.pub-item a{color:var(--primary); font-weight:600; text-decoration:none;}
+.pub-item a:hover{text-decoration:underline;}
+.badge{
+  background:#ffe08a; color:#7b5500;
+  padding:2px 6px; border-radius:3px; font-size:12px; margin-right:4px;
+}
+
+/* 响应式：小屏侧栏折叠 */
+@media(max-width:900px){
+  .wrapper{grid-template-columns:1fr;}
+  .sidebar{position:static; order:-1; margin-bottom:32px;}
+}
+</style>
+
+<script>
+// 简单 Active Link（根据滚动位置高亮导航）
+document.addEventListener('DOMContentLoaded',()=>{
+  const navLinks=[...document.querySelectorAll('nav a')];
+  const sections=navLinks.map(a=>document.querySelector(a.getAttribute('href')));
+  const activate=()=>{
+    const pos=window.scrollY+110; // 导航+偏移
+    let idx=0;
+    sections.forEach((sec,i)=>{ if(sec.offsetTop<=pos) idx=i; });
+    navLinks.forEach(a=>a.classList.remove('active'));
+    navLinks[idx].classList.add('active');
+  };
+  activate();
+  window.addEventListener('scroll',activate);
+});
+</script>
 </head>
+
 <body>
-  <div class="container">
-    <h1>你好，我是你的名字！</h1>
-    <p>欢迎访问我的个人主页。</p>
-  </div>
+<!--========== 顶部导航 ==========-->
+<nav>
+  <a href="#home">Homepage</a>
+  <a href="#about">About Me</a>
+  <a href="#news">News</a>
+  <a href="#pub">Publications</a>
+  <a href="#tutorials">Tutorials & Contributions</a>
+  <a href="#honors">Honors & Awards</a>
+  <a href="#edu">Educations</a>
+  <a href="#service">Academic Service</a>
+</nav>
+
+<div class="wrapper">
+  <!--========== 侧栏 ==========-->
+  <aside class="sidebar">
+    <img src="your_photo.jpg" alt="Profile Photo">
+    <h2>Your Name</h2>
+    <p>Affiliation, University/Institute</p>
+    <p>City, Country</p>
+
+    <ul>
+      <li><a href="mailto:you@example.com">✉️ Email</a></li>
+      <li><a href="https://github.com/username">🐙 GitHub</a></li>
+      <li><a href="https://scholar.google.com/citations?user=XXXXX">🔍 Google Scholar</a></li>
+      <li><a href="https://orcid.org/0000-0000-0000-0000">🆔 ORCID</a></li>
+    </ul>
+  </aside>
+
+  <!--========== 主体内容 ==========-->
+  <main>
+    <!-- Home 占位锚点 -->
+    <section id="home"></section>
+
+    <!-- About Me -->
+    <section id="about">
+      <h3>About Me</h3>
+      <ul class="dotlist">
+        <li>I am a third-year Ph.D. candidate at <strong>XXX University</strong>, advised by Prof. AAA.</li>
+        <li>I received my B.S. in Computer Science from YYY University in 2022.</li>
+        <li>My research interests lie in <em>Large Language Model Agents</em> and <em>AI4SE</em>.</li>
+        <li><strong>Call for Collaboration:</strong> I’m always open to working with motivated students—feel free to email me!</li>
+      </ul>
+    </section>
+
+    <!-- News -->
+    <section id="news">
+      <h3>News</h3>
+      <ul class="news dotlist">
+        <li><time>2025-05-15</time> One paper has been accepted at ACL 2025 🎉</li>
+        <li><time>2025-02-26</time> Paper published at TNNLS 📝</li>
+        <li><time>2024-12-25</time> Journal of Cyber Security article online 🏆</li>
+        <li><time>2024-12-15</time> NAACL 2025 acceptance 🎉</li>
+      </ul>
+    </section>
+
+    <!-- Publications -->
+    <section id="pub">
+      <h3>Publications</h3>
+
+      <!-- 每篇论文一个 .pub-item -->
+      <div class="pub-item">
+        <img src="paper1_thumb.jpg" alt="">
+        <div>
+          <div class="badge">Preprint</div>
+          <a href="https://arxiv.org/abs/xxxx.xxxxx">OS-Kairos: Adaptive Interaction for LLM-Powered GUI Agents</a><br>
+          <span>Pengzhou Cheng, <strong>Your Name</strong>, et al.</span><br>
+          <span>• Predict confidence at each interaction step, releasing an adaptive GUI agent that improves success rate in complex scenarios.</span>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <img src="paper2_thumb.jpg" alt="">
+        <div>
+          <div class="badge">ACL 2024</div>
+          <a href="#">Grounding and Reasoning for LLM-Powered GUI Agents with Query-Oriented Pivot Tasks</a><br>
+          <span>Your Name, et al.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tutorials -->
+    <section id="tutorials">
+      <h3>Tutorials & Contributions</h3>
+      <ul class="dotlist">
+        <li>Co-organized the tutorial “LLM Agents for Real-World Software Tasks” (EMNLP 2024).</li>
+        <li>Main developer of open-source toolkit <a href="#">AgentBench</a> (3k+ ⭐).</li>
+      </ul>
+    </section>
+
+    <!-- Honors -->
+    <section id="honors">
+      <h3>Honors & Awards</h3>
+      <ul class="dotlist">
+        <li>Outstanding Graduate of XXX Province (Top 1%).</li>
+        <li>National Scholarship, Ministry of Education, 2023.</li>
+      </ul>
+    </section>
+
+    <!-- Education -->
+    <section id="edu">
+      <h3>Educations</h3>
+      <ul class="dotlist">
+        <li>Ph.D. in Computer Science, XXX University, 2023-present.</li>
+        <li>B.S. in Cyber Science & Engineering, YYY University, 2018-2022.</li>
+      </ul>
+    </section>
+
+    <!-- Service -->
+    <section id="service">
+      <h3>Academic Service</h3>
+      <ul class="dotlist">
+        <li>Reviewer for ACL, EMNLP, NAACL, NeurIPS.</li>
+        <li>PC Member, Workshop on Trustworthy LLM Systems 2024.</li>
+      </ul>
+    </section>
+
+  </main>
+</div>
 </body>
 </html>
