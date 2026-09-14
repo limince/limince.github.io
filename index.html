@@ -1,375 +1,150 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mince Li | Personal Homepage</title>
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="个人学术主页：研究方向、最新动态、代表性成果与联系方式。"
+    />
+    <meta name="theme-color" content="#f7f5ef" />
+    <meta name="author" content="Mince Li" />
+    <meta property="og:title" content="Mince Li · Anhui University" />
+    <meta property="og:type" content="website" />
+    <title>李民策 Mince Li · Personal Homepage</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="content.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content" data-i18n="skipLink">跳到主要内容</a>
 
-<style>
-/* ---------- 全局 ---------- */
-:root{
-  --bg:#fdfdfd; --primary:#0058b0; --primary-lt:#ebf3ff;
-  --text:#222;   --text-light:#555; --border:#e0e0e0;
-}
-*{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  color:var(--text); background:var(--bg); line-height:1.65;
-}
-
-/* ---------- 顶部导航 ---------- */
-nav{
-  position:fixed; top:0; left:0; right:0; z-index:100;
-  background:#fff; border-bottom:1px solid var(--border);
-  display:flex; gap:40px; padding:0 32px;
-}
-nav a{
-  display:block; padding:14px 0;
-  color:var(--text-light); text-decoration:none; font-size:15px;
-  border-bottom:3px solid transparent;
-}
-nav a:hover,nav a.active{color:var(--primary);border-color:var(--primary);}
-
-/* ---------- 布局 ---------- */
-.wrapper{
-  max-width:1100px; margin:80px auto 40px;
-  display:grid; grid-template-columns:260px 1fr; gap:40px;
-}
-
-/* ---------- 侧栏 ---------- */
-.sidebar{
-  background:#fff; border:1px solid var(--border); border-radius:6px;
-  padding:24px; text-align:center; position:sticky; top:100px;
-}
-.sidebar img{
-  width:140px; height:140px; border-radius:50%; object-fit:cover;
-  border:3px solid var(--primary-lt);
-}
-.sidebar h2{margin:16px 0 4px; font-size:22px;}
-.sidebar p{margin:4px 0; font-size:14px; color:var(--text-light);}
-.sidebar ul{list-style:none; padding:0; margin:18px 0 0;}
-.sidebar li{margin:6px 0;}
-.sidebar a{color:var(--primary); font-size:14px; text-decoration:none;}
-.sidebar a:hover{text-decoration:underline;}
-
-/* ---------- 主体标题 ---------- */
-section{margin-bottom:60px;}
-section h3{
-  display:flex; align-items:center; gap:6px;
-  font-size:22px; margin:0 0 18px;
-}
-section h3::before{
-  content:""; width:8px; height:8px; border-radius:50%;
-  background:var(--primary);
-}
-/* 小标题 */
-section h4{font-size:18px; margin:6px 0 12px;}
-section h5{font-size:16px; margin:4px 0 10px; color:var(--text-light);}
-
-/* ---------- 列表 ---------- */
-ul.dotlist{padding-left:18px; margin:0;}
-ul.dotlist li{margin:6px 0;}
-.news li{margin:6px 0;} .news time{font-weight:600; margin-right:6px;}
-
-/* ---------- Publications 样式 ---------- */
-.pub-base{
-  list-style:none; padding-left:0;
-  color:#6b7a8a; font-size:15px; line-height:1.55;
-}
-
-/* 期刊计数器 */
-.j-block{counter-reset:jpub 0;}
-.j-block li{counter-increment:jpub; margin:10px 0 18px;}
-.j-block li::before{
-  content:"J" counter(jpub) ". ";
-  font-weight:600; color:#3a4754;
-}
-
-/* 会议计数器 */
-.c-block{counter-reset:cpub 0;}
-.c-block li{counter-increment:cpub; margin:10px 0 18px;}
-.c-block li::before{
-  content:"C" counter(cpub) ". ";
-  font-weight:600; color:#3a4754;
-}
-
-/* 链接配色 */
-.pub-base a{color:#0058b0; text-decoration:none;}
-.pub-base a:hover{text-decoration:underline;}
-
-/* ---------- 响应式 ---------- */
-@media(max-width:900px){
-  .wrapper{grid-template-columns:1fr;}
-  .sidebar{position:static; order:-1; margin-bottom:32px;}
-}
-</style>
-
-<script>
-/* ---------- 滚动高亮导航 ---------- */
-document.addEventListener('DOMContentLoaded',()=>{
-  const navLinks=[...document.querySelectorAll('nav a')];
-  const sections=navLinks.map(a=>document.querySelector(a.getAttribute('href')));
-  const activate=()=>{
-    const pos=window.scrollY+110;
-    let idx=0;
-    sections.forEach((sec,i)=>{if(sec.offsetTop<=pos) idx=i;});
-    navLinks.forEach(a=>a.classList.remove('active'));
-    navLinks[idx].classList.add('active');
-  };
-  activate(); window.addEventListener('scroll',activate);
-});
-</script>
-</head>
-
-<body>
-<!-- ---------- 顶部导航 ---------- -->
-<nav>
-  <a href="#home">Homepage</a>
-  <a href="#about">About Me</a>
-  <a href="#news">News</a>
-  <a href="#pub">Publications</a>
-  <a href="#honors">Honors & Awards</a>
-  <a href="#edu">Educations</a>
-  <a href="#service">Academic Service</a>
-</nav>
-
-<div class="wrapper">
-  <!-- ---------- 侧栏 ---------- -->
-  <aside class="sidebar">
-    <img src="your_photo.jpg" alt="Profile Photo">
-    <h2>Mince Li</h2>
-    <p>Lecture, School of Electrical Engineering and Automation, Anhui University</p>
-    <p>Hefei, China</p>
-
-    <ul>
-      <li><a href="mailto:limince@ahu.edu.cn">✉️ Email</a></li>
-      <li><a href="https://limince.github.io/">🐙 GitHub</a></li>
-      <li><a href="https://scholar.google.com/citations?user=Agfrx18AAAAJ&hl=zh-CN">🔍 Google Scholar</a></li>
-      <li><a href="https://orcid.org/0000-0003-1341-8599">🆔 ORCID</a></li>
-    </ul>
-  </aside>
-
-  <!-- ---------- 主体 ---------- -->
-  <main>
-    <section id="home"></section>
-
-    <!-- About -->
-    <section id="about">
-      <h3>About Me</h3>
-      <ul class="dotlist">
-        <li>I am a lecture at <strong>School of Electrical Engineering and Automation, Anhui University</strong>.</li>
-        <li>I received my Ph.D in Control Engineering and Science from <strong>University of Science and Technology of China</strong> in 2024, advised by <strong>Prof. Zonghai Chen</strong>.</li>
-        <li>I received my B.S. in Electrical Engineering and its Automation from Beijing Jiaotong University in 2019.</li>
-        <li>My research interests lie in <em>Energy Management Strategy for Fuel Cell Hybrid Systems</em>, <em>Battery Management System</em>, <em>Prognostics and Health Management for Fuel Cells</em>.</li>
-        <li><strong>Call for Collaboration:</strong> I’m always open to working with fellow researchers and students—feel free to email me!</li>
-      </ul>
-    </section>
-
-    <!-- News -->
-    <section id="news">
-      <h3>News</h3>
-      <ul class="news dotlist">
-        <li><time>2025-06-20</time> One paper has been accepted at CCSSTA 2025 🎉</li>
-        <li><time>2025-06-15</time> Paper published at International Journal of Hydrogen Energy 📝</li>
-      </ul>
-    </section>
-
-    <!-- Publications -->
-    <section id="pub">
-      <h3>Publications</h3>
-
-      <!-- ───────── Journal ───────── -->
-      <div class="j-block">
-        <h4>Journal Papers</h4>
-
-        <h5>First / Corresponding Author</h5>
-        <ul class="pub-base">
-           <!-- ① Hydrogen Energy 论文 -->
-          <li>
-            <strong>Li M.</strong>, Yang D., Tian J., Fan Y., Pan T.,
-            <em>An adaptive fuzzy energy management strategy for fuel cell hybrid vehicles considering soft classification for driving pattern</em>,
-            International Journal of Hydrogen Energy, 2025, 138: 273-285.
-          </li>
-
-          <!-- ① GEITS 论文 -->
-          <li>
-            <strong>Li M.</strong>, Wang Y., Peng P., Chen Z.,
-            <em>Toward efficient smart management: A review of modeling and optimization approaches in electric vehicle-transportation network-grid integration</em>,
-            Green Energy and Intelligent Transportation, 2024, 3(6): 100181.
-          </li>
-
-          <!-- ① ECM 论文 -->
-          <li>
-            <strong>Li M.</strong>, Wang Y., Yu P., Sun Z., Chen Z.,
-            <em>Online adaptive energy management strategy for fuel cell hybrid vehicles based on improved cluster and regression learner</em>,
-            Energy Conversion and Management, 2023, 292: 117388.
-          </li>
-          
-          <!-- ① T-TE 论文 -->
-          <li>
-            <strong>Li M.</strong>, Yu P., Wang Y., Sun Z., Chen Z.,
-            <em>Topology comparison and sensitivity analysis of fuel cell hybrid systems for electric vehicles</em>,
-            IEEE Transactions on Transportation Electrification, 2023, 9(4): 5111-5121.
-          </li>
-          
-          <!-- ② JESTPE 论文 -->
-          <li>
-            <strong>Li M.</strong>, Wang L., Wang Y., Chen X., Chen Z.,
-            <em>A framework for states co-estimation of hybrid energy storage systems based on fractional-order theory</em>,
-            IEEE Journal of Emerging and Selected Topics in Power Electronics, 2023, 11(1): 224-233.
-          </li>
-          
-          <!-- ③ T-PEL 论文 -->
-          <li>
-            <strong>Li M.</strong>., Wang L., Wang Y., Chen Z.,
-            <em>Sizing optimization and energy management strategy for hybrid energy storage system using multi-objective optimization and random forests</em>,
-            IEEE Transactions on Power Electronics, 2021, 36(10): 11421-11430.
-          </li>
-        </ul>
-
-        <h5>Co-authored Papers</h5>
-        <ul class="pub-base">
-
-          <!-- ① T-TE, 2025 -->
-          <li>
-            Fan Y., Chi Q., Fang X., Tian J., <strong>Li M.</strong>, Liu X.,
-            <em>State-of-charge estimation of lithium-ion batteries using an adaptive particle filter based on an improved particle swarm optimization algorithm</em>,
-            IEEE Transactions on Transportation Electrification, 2025, **(early access): ***-***.
-          </li>
-          
-          <!-- ② T-IE, 2025 -->
-          <li>
-            Zhang Z., Fan Y., Tian J., Kuang H., <strong>Li M.</strong>, Pan T., Wang Y., Liu X.,
-            <em>Online estimation of model parameters and state of charge for lithium-ion battery using multiscale recurrent neural networks</em>,
-            IEEE Transactions on Industrial Electronics, 2025, 72(8): 8119-8129.
-          </li>
-          
-          <!-- ③ ECM, 2024 -->
-          <li>
-            Liu Y., Sun Z., Wang Y., <strong>Li M.</strong>, Chen Z.,
-            <em>Capacity configuration of fuel cell hybrid vehicles using enhanced multi-objective particle swarm optimization with competitive mechanism</em>,
-            Energy Conversion and Management, 2024, 321: 119039.
-          </li>
-          
-          <!-- ④ Measurement, 2024 -->
-          <li>
-            Fan Y., Zhang Z., Yang G., Pan T., Tian J., <strong>Li M.</strong>, Liu X., Wang P.,
-            <em>A comparative study of modeling and parameter identification for lithium-ion batteries in energy storage systems</em>,
-            Measurement, 2024, 243: 116263.
-          </li>
-          
-          <li>
-            Liu Y., <strong>Li M.</strong>, Wang Y., Sun Z., Chen Z.,
-            <em>Predictive energy management for fuel cell hybrid vehicles considering efficiency and safety</em>,
-            IEEE Transactions on Power Electronics, 2024, 39(10): 13842-13852.
-          </li>
-          
-          <li>
-            Shi Y., Sun Z., Wang Y., <strong>Li M.</strong>, Chen Z.,
-            <em>Thermal management of proton-exchange membrane fuel cells with enhanced fuzzy control via an improved whale optimization algorithm</em>,
-            Energy Technology, 2024, 12(6): 2400955.
-          </li>
-          
-          <li>
-            Chen X., <strong>Li M.</strong>, Chen Z.,
-            <em>Meta rule-based energy management strategy for battery/supercapacitor hybrid electric vehicles</em>,
-            Energy, 2023, 285: 129365.
-          </li>
-          
-          <li>
-            Yu P., <strong>Li M.</strong>, Wang Y., Chen Z.,
-            <em>Fuel cell hybrid electric vehicles: A review of topologies and energy management strategies</em>,
-            World Electric Vehicle Journal, 2022, 13(9): 172.
-          </li>
-          <li>
-            Wang Y., Zhao G., Zhou C., <strong>Li M.</strong>, Chen Z.,
-            <em>Lithium-ion battery optimal charging using moth-flame optimization algorithm and fractional-order model</em>,
-            IEEE Transactions on Transportation Electrification, 2022, 9(4): 4981-4989.
-          </li>
-          
-          <li>
-            Wang L., <strong>Li M.</strong>, Chen Z.,
-            <em>An energy management strategy for hybrid energy storage systems coordinate with state of thermal and power</em>,
-            Control Engineering Practice, 2022, 122: 105122.
-          </li>
-          
-          <li>
-            Wang L., <strong>Li M.</strong>, Wang Y., Chen Z.,
-            <em>Energy management strategy and optimal sizing for hybrid energy storage systems using an evolutionary algorithm</em>,
-            IEEE Transactions on Intelligent Transportation Systems, 2021, 23(9): 14283-14293.
-          </li>
-          
-          <li>
-            Wang Y., <strong>Li M.</strong>, Chen Z.,
-            <em>Experimental study of fractional-order models for lithium-ion battery and ultra-capacitor: Modeling, system identification, and validation</em>,
-            Applied Energy, 2020, 278: 115736.
-          </li>
-          
-          <li>
-            Wang Y., Tian J., Sun Z., Wang L., Xu R., <strong>Li M.</strong>, Chen Z.,
-            <em>A comprehensive review of battery modeling and state estimation approaches for advanced battery management systems</em>,
-            Renewable and Sustainable Energy Reviews, 2020, 131: 110015.
-          </li>
-          
-          <li>
-            Wang Y., Wang L., <strong>Li M.</strong>, Chen Z.,
-            <em>A review of key issues for control and management in battery and ultra-capacitor hybrid energy storage systems</em>,
-            eTransportation, 2020, 4: 100064.
-          </li>
-        </ul>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="site-mark" href="#top" aria-label="返回首页">ML</a>
+        <nav class="desktop-nav" aria-label="主要导航">
+          <a href="#about" data-i18n="navAbout">简介</a>
+          <a href="#research" data-i18n="navResearch">研究</a>
+          <a href="#experience" data-i18n="navExperience">经历</a>
+          <a href="#publications" data-i18n="navPublications">成果</a>
+          <a href="#contact" data-i18n="navContact">联系</a>
+        </nav>
+        <button class="language-toggle" type="button" aria-label="Switch language">
+          <span class="language-current">中文</span>
+          <span aria-hidden="true">/</span>
+          <span class="language-other">EN</span>
+        </button>
       </div>
+    </header>
 
-      <!-- ───────── Conference ───────── -->
-      <div class="c-block">
-        <h4>Conference Papers</h4>
+    <main id="main-content">
+      <section class="hero section-shell" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="eyebrow">能源 · 智能 · 控制</p>
+          <h1 data-i18n="name">李民策</h1>
+          <p class="hero-title" data-i18n="heroTitle">讲师 · 安徽大学电气工程与自动化学院</p>
+          <p class="hero-intro" data-i18n-html="heroIntro">
+            我目前任职于<strong>安徽大学电气工程与自动化学院</strong>，主要研究新能源动力、智慧能量管理、先进储能与低空智能系统。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="mailto:limince@ahu.edu.cn" data-contact="email">
+              <span data-i18n="emailLabel">给我邮件</span>
+            </a>
+            <a class="button button-secondary" href="#" data-contact="cv" target="_blank" rel="noreferrer" hidden>
+              <span data-i18n="cvLabel">查看简历</span>
+            </a>
+          </div>
+          <div class="social-links" aria-label="学术与社交链接">
+            <a href="https://scholar.google.com/" data-contact="scholar" target="_blank" rel="noreferrer">Google Scholar</a>
+            <a href="https://github.com/" data-contact="github" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://orcid.org/0000-0003-1341-8599" data-contact="orcid" target="_blank" rel="noreferrer">ORCID</a>
+          </div>
+        </div>
 
-        <h5>First / Corresponding Author</h5>
-        <ul class="pub-base">
-          <li>
-            Mince Li, et al.,
-            <em>Grounding and Reasoning for LLM-Powered GUI Agents with Query-Oriented Pivot Tasks</em>,
-            ACL 2024.
-          </li>
-        </ul>
+        <div class="portrait-card" aria-label="个人照片区域">
+          <img class="portrait-image" src="assets/mince-li-original.jpg" alt="李民策 Mince Li" />
+          <div class="portrait-note">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span data-i18n="status">欢迎学术交流与合作</span>
+          </div>
+        </div>
+      </section>
 
-        <h5>Co-authored Papers</h5>
-        <ul class="pub-base">
-          <!-- 示例空条目，可按需添加 -->
-        </ul>
-      </div>
-    </section>
+      <section class="content-section section-shell" id="about">
+        <div class="section-heading">
+          <span class="section-number">01</span>
+          <h2 data-i18n="aboutHeading">关于我</h2>
+        </div>
+        <div class="two-column-copy">
+          <p data-i18n-html="aboutParagraph1">
+            请在这里介绍你的教育经历、目前职位和研究背景。这一段建议保持在 100–150 字，让访问者快速认识你。
+          </p>
+          <p data-i18n-html="aboutParagraph2">
+            你也可以补充长期目标、正在寻找的合作方向，或者一两项能够体现个人特点的经历。
+          </p>
+        </div>
+        <div class="profile-stats" aria-label="学术概况">
+          <div><strong>20+</strong><span data-i18n="statPapers">SCI 期刊论文</span></div>
+          <div><strong>3000+</strong><span data-i18n="statCitations">Google Scholar 引用</span></div>
+          <div><strong>10</strong><span data-i18n="statPatents">发明专利申请</span></div>
+        </div>
+      </section>
 
-    <!-- Honors -->
-    <section id="honors">
-      <h3>Honors & Awards</h3>
-      <ul class="dotlist">
-        <li>Outstanding Graduate of XXX Province (Top 1%).</li>
-        <li>National Scholarship, Ministry of Education, 2023.</li>
-      </ul>
-    </section>
+      <section class="content-section section-shell" id="research">
+        <div class="section-heading">
+          <span class="section-number">02</span>
+          <h2 data-i18n="researchHeading">研究兴趣</h2>
+        </div>
+        <p class="section-lead" data-i18n="researchLead">
+          我关注理论方法如何转化为可靠、可解释并能够在真实世界运行的智能系统。
+        </p>
+        <div class="research-grid" id="research-grid"></div>
+      </section>
 
-    <!-- Education -->
-    <section id="edu">
-      <h3>Educations</h3>
-      <ul class="dotlist">
-        <li>Ph.D in Control Engineering and Science, University of Science and Technology of China, 2019-2024.</li>
-        <li>B.S. in in Electrical Engineering and its Automation, Beijing Jiaotong University, 2015-2019.</li>
-      </ul>
-    </section>
+      <section class="content-section section-shell" id="experience">
+        <div class="section-heading">
+          <span class="section-number">03</span>
+          <h2 data-i18n="experienceHeading">教育与学术经历</h2>
+        </div>
+        <div class="experience-layout">
+          <div>
+            <h3 class="subsection-title" data-i18n="educationHeading">教育背景</h3>
+            <div class="timeline" id="education-list"></div>
+          </div>
+          <div>
+            <h3 class="subsection-title" data-i18n="highlightsHeading">荣誉与学术服务</h3>
+            <div class="news-list compact" id="news-list"></div>
+          </div>
+        </div>
+      </section>
 
-    <!-- Service -->
-    <section id="service">
-      <h3>Academic Service</h3>
-      <ul class="dotlist">
-        <li>Reviewer for IEEE TTE, IEEE TITS, IEEE TVT, RSER, APEN, EST, EAAI, …….</li>
-        <li>Member, IEEE.</li>
-        <li>Member, System Simulation Technical Committee, Chinese Association of Automation.</li>
-        <li>Member, Simulation Technology Application Committee, China Simulation Federation.</li>
-      </ul>
-    </section>
-  </main>
-</div>
-</body>
+      <section class="content-section section-shell" id="publications">
+        <div class="section-heading publication-heading">
+          <div>
+            <span class="section-number">04</span>
+            <h2 data-i18n="publicationsHeading">代表性期刊论文</h2>
+          </div>
+          <a class="text-link" href="https://scholar.google.com/" data-contact="scholar" target="_blank" rel="noreferrer">
+            <span data-i18n="allPublications">查看全部成果</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div class="publication-groups" id="publication-list"></div>
+      </section>
+
+      <section class="contact-section section-shell" id="contact">
+        <p class="eyebrow" data-i18n="contactEyebrow">保持联系</p>
+        <h2 data-i18n="contactHeading">如果你对我的研究感兴趣，欢迎来信交流。</h2>
+        <a class="contact-email" href="mailto:limince@ahu.edu.cn" data-contact="email-text">
+          limince@ahu.edu.cn
+          <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer section-shell">
+      <p>© <span id="current-year"></span> <span data-i18n="name">李民策</span></p>
+      <p data-i18n="footerNote">使用原生 HTML、CSS 与 JavaScript 构建，托管于 GitHub Pages。</p>
+    </footer>
+  </body>
 </html>
