@@ -65,7 +65,7 @@ button { font: inherit; }
   gap: clamp(4rem, 8vw, 8rem); align-items: center; min-height: 670px; padding-block: 5.4rem;
 }
 .hero::after {
-  position: absolute; top: 0; right: -16vw; z-index: -1; width: 58vw; height: 100%; content: "";
+  position: absolute; top: 0; right: 0; z-index: -1; width: 58vw; height: 100%; content: "";
   background-image: linear-gradient(rgba(23, 105, 224, .055) 1px, transparent 1px), linear-gradient(90deg, rgba(23, 105, 224, .055) 1px, transparent 1px);
   background-size: 34px 34px; mask-image: linear-gradient(90deg, transparent, black 35%, transparent);
 }
