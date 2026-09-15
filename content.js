@@ -16,8 +16,10 @@ window.SITE_CONTENT = {
     navExperience: "经历",
     navPublications: "论文",
     navContact: "联系",
-    eyebrow: "能源 · 智能 · 控制",
+    brandRole: "安徽大学",
+    eyebrow: "智能能源系统 · INTELLIGENT ENERGY SYSTEMS",
     name: "李民策",
+    englishName: "Mince Li",
     initials: "ML",
     heroTitle: "讲师 · 安徽大学电气工程与自动化学院 · 中国合肥",
     heroIntro: "我目前任职于<strong>安徽大学电气工程与自动化学院</strong>，主要研究新能源动力、智慧能量管理、先进储能与低空智能系统。",
@@ -30,6 +32,7 @@ window.SITE_CONTENT = {
     statPapers: "SCI 期刊论文",
     statCitations: "Google Scholar 引用",
     statPatents: "发明专利申请",
+    metricFocus: "研究关键词",
     researchHeading: "研究方向",
     researchLead: "面向新能源交通与低空智能系统，探索能源、感知、决策和控制的深度融合。",
     research: [
@@ -81,6 +84,8 @@ window.SITE_CONTENT = {
     linkPaper: "论文",
     linkCode: "代码",
     linkProject: "项目",
+    showAllPublications: "展开全部论文",
+    showFewerPublications: "收起完整列表",
     publications: {
       primary: [
         {
@@ -276,8 +281,10 @@ window.SITE_CONTENT = {
     navExperience: "Experience",
     navPublications: "Papers",
     navContact: "Contact",
-    eyebrow: "Energy · Intelligence · Control",
+    brandRole: "Anhui University",
+    eyebrow: "INTELLIGENT ENERGY SYSTEMS",
     name: "Mince Li",
+    englishName: "李民策",
     initials: "ML",
     heroTitle: "Lecturer · School of Electrical Engineering and Automation, Anhui University · Hefei, China",
     heroIntro: "I am a Lecturer at the <strong>School of Electrical Engineering and Automation, Anhui University</strong>. My research spans intelligent energy management, advanced energy storage, and low-altitude autonomous systems.",
@@ -290,6 +297,7 @@ window.SITE_CONTENT = {
     statPapers: "SCI journal papers",
     statCitations: "Google Scholar citations",
     statPatents: "Patent applications",
+    metricFocus: "Research focus",
     researchHeading: "Research interests",
     researchLead: "My work connects energy, perception, decision-making, and control for new-energy mobility and low-altitude autonomous systems.",
     research: [
@@ -341,6 +349,8 @@ window.SITE_CONTENT = {
     linkPaper: "Paper",
     linkCode: "Code",
     linkProject: "Project",
+    showAllPublications: "Show all publications",
+    showFewerPublications: "Show fewer",
     publications: null,
     contactEyebrow: "Get in touch",
     contactHeading: "I welcome conversations and collaborations in intelligent energy, advanced storage, and low-altitude autonomy.",
